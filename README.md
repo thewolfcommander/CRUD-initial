@@ -4,4 +4,4 @@ A simple CRUD Application developed in django
 Some Glimpses of the system are
 
 **Listing All Posts**
-![Post List]('/docs/img/crud1.png')
+<img src="/docs/img/crud1.png" alt="Listing all posts" width="100%">
