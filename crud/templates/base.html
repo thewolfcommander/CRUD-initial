@@ -11,10 +11,14 @@
     <title>{% block title %}{% endblock title %}</title>
   </head>
   <body>
-      {% include 'includes/navbar.html' %}
 
+    {% include 'includes/navbar.html' %}
+      <div class="container mt-5">
+          
       {% block content %}
       {% endblock content %}
+
+      </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

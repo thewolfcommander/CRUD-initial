@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Post {{ post.title }} {% endblock title %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+
+    <div class="col-md-12 mb-5 px-0 text-center">
+
+        <div class="card mb-3">
+            <img src="https://images.pexels.com/photos/3793689/pexels-photo-3793689.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="display-4">{{ post.title }}</h5>
+              <p class="card-text">{{ post.summary }}.</p>
+              <p class="card-text"><small class="text-muted">Last updated {{ post.updated|timesince }} ago</small></p>
+
+              <hr><br>
+              <p class="lead">{{ post.description }}</p>
+            </div>
+            <div class="card-footer">
+                <h5 class="card-title">Post by <strong><a href="#">{{ post.user.username }}</a></strong></h5>
+                {% if request.user.is_authenticated %}
+        {% if post.user == request.user %}
+        <a href="{% url 'update' post.slug %}" class='btn btn-lg btn-info my-3'>Edit this post</a>
+        <a href="{% url 'delete' post.slug %}" class='btn btn-lg btn-danger my-3'>Delete this post</a>
+        {% endif %}
+        {% endif %}
+            </div>
+          </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Post {{ post.title }} {% endblock title %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+    <h4 class="display-3">Update Post</h4>
+    <div class="col-md-12 mb-5 px-0 text-center">
+
+        <div class="card mb-3">
+            <img src="https://images.pexels.com/photos/3793689/pexels-photo-3793689.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="display-4">{{ post.title }}</h5>
+                <a href="{% url 'delete' post.slug %}" class="btn btn-danger">Delete Post</a>
+            </div>
+            <div class="card-footer">
+                <h5 class="card-title">Post by <strong><a href="#">{{ post.user.username }}</a></strong></h5>
+                {% if request.user.is_authenticated %}
+                {% if post.user == request.user %}
+                {% if form %}
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Create the Post" class="btn btn-success">
+                </form>
+                {% endif %}
+                {% endif %}
+                {% else %}
+                <p class="lead text-danger">You do not have access to edit this post</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

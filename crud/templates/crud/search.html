@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 
-{% block title %}Home - Showing all latest posts {% endblock title %}
+{% block title %}Showing Results for {{ query }} {% endblock title %}
 
 {% block content %}
 
 <div class="row justify-content-center mt-5">
-
     <div class="col-md-6 mb-5 px-0 text-center">
-        <h2 class="display-4 text-secondary">Latest Posts</h2>
+        <h2 class="card-title text-secondary">Showing results for <a href="{% url 'search' %}?search={{ query }}">{{ query }}</a></h2>
+
+    <form action="{% url 'search' %}">
+        <div class="form-row align-items-center">
+            <div class="col-md-12 my-1">
+                <input type="text" name="search" id="" class="form-control" placeholder="Search here" value="{{ query }}">
+                <input type="submit" class="btn-lg my-3 btn-primary" value="Search">
+            </div>
+        </div>
+    </form>
 
 
     {% if request.user.is_authenticated %}
@@ -39,8 +47,6 @@
         </div>
     </div>
     {% endfor %}
-    {% else %}
-    No Posts found
     {% endif %}
 </div>
 
